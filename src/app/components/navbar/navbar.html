@@ -1,0 +1,14 @@
+<nav class="teal darken-2">
+  <div class="nav-wrapper container">
+    <a href="#inicio" class="brand-logo">
+      <i class="fa-solid fa-couch left hide-on-small-only"></i>{{ nombreEmpresa }}
+    </a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li *ngFor="let item of menu">
+        <a [href]="item.route">
+          <i [class]="item.icono + ' left'"></i>{{ item.nombre }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

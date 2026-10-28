@@ -1,0 +1,42 @@
+<footer id="contacto" class="page-footer teal darken-3" style="padding-top: 30px;">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text" style="font-weight: bold;">
+          <i class="fa-solid fa-couch left"></i>{{ nombreEmpresa }}
+        </h5>
+        <p class="grey-text text-lighten-4">
+          Diseño, confort y calidad para transformar cada rincón de tu hogar. Especialistas en muebles finos y contemporáneos.
+        </p>
+        <p class="grey-text text-lighten-4">
+          <i class="fa-solid fa-location-dot left"></i> Av. Insurgentes Sur 1234, CDMX<br>
+          <i class="fa-solid fa-phone left"></i> +52 (55) 1234-5678
+        </p>
+      </div>
+
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text" style="font-weight: bold;">Síguenos en Redes</h5>
+        <ul>
+          <!-- Mostrar las redes sociales con *ngFor e iconos de Font Awesome -->
+          <!-- Utilizar [href] y [target] para los enlaces externos -->
+          <li *ngFor="let red of redesSociales" style="margin-bottom: 12px;">
+            <a class="grey-text text-lighten-3 waves-effect waves-light"
+               [href]="red.enlace"
+               [target]="'_blank'"
+               rel="noopener noreferrer"
+               style="font-size: 1.05rem;">
+              <i [class]="red.icono + ' left'" style="font-size: 1.25rem;"></i>{{ red.nombre }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-copyright teal darken-4">
+    <div class="container center-align">
+      <!-- Mostrar el nombre de la empresa y el copyright con el año actual obtenido desde TypeScript -->
+      © {{ anioActual }} {{ nombreEmpresa }}. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>

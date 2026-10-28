@@ -1,0 +1,50 @@
+<section id="promociones" class="container" style="padding: 40px 0;">
+  <div class="center-align" style="margin-bottom: 25px;">
+    <h4 class="teal-text text-darken-2" style="font-weight: 600;">Promociones Especiales</h4>
+    <p class="grey-text text-darken-1">Aprovecha nuestras ofertas y descuentos exclusivos para tu hogar</p>
+    
+    <!-- Botón que alterna entre todas las promociones y las vigentes usando (click) y variable booleana -->
+    <button class="btn waves-effect waves-light orange darken-3" (click)="alternarFiltro()" style="margin-top: 10px;">
+      <i class="fa-solid fa-filter left"></i>
+      {{ soloVigentes ? 'Mostrar Todas las Promociones' : 'Mostrar Solo Vigentes' }}
+    </button>
+  </div>
+
+  <div class="row">
+    <!-- Mostrar las promociones vigentes mediante *ngFor y *ngIf -->
+    <ng-container *ngFor="let promo of promociones">
+      <div class="col s12 m6 l4" *ngIf="!soloVigentes || promo.vigente" style="margin-bottom: 25px;">
+        <div class="card hoverable" style="height: 100%;">
+          
+          <div class="card-image">
+            <img [src]="promo.imagen" [alt]="promo.titulo" style="height: 180px; object-fit: cover;">
+            <span class="card-title red darken-1 white-text" style="padding: 4px 12px; font-weight: bold; border-radius: 4px; margin: 10px; font-size: 0.95rem;">
+              -{{ promo.descuento }}% OFF
+            </span>
+          </div>
+
+          <div class="card-content">
+            <!-- Aplicar pipe de texto (uppercase) al título -->
+            <span class="card-title teal-text text-darken-3" style="font-size: 1.05rem; font-weight: bold; min-height: 48px; display: block;">
+              {{ promo.titulo | uppercase }}
+            </span>
+
+            <p class="grey-text text-darken-2" style="font-size: 0.88rem; min-height: 42px;">
+              {{ promo.descripcion }}
+            </p>
+
+            <div style="margin-top: 15px;">
+              <span *ngIf="promo.vigente" class="chip green lighten-4 green-text text-darken-4" style="font-weight: bold;">
+                <i class="fa-solid fa-circle-check left"></i>Vigente
+              </span>
+              <span *ngIf="!promo.vigente" class="chip grey lighten-3 grey-text text-darken-2" style="font-weight: bold;">
+                <i class="fa-solid fa-clock-rotate-left left"></i>Vencida
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</section>

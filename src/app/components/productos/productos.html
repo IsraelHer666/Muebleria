@@ -1,0 +1,65 @@
+<section id="catalogo" class="container" style="padding: 40px 0;">
+  <div class="center-align" style="margin-bottom: 30px;">
+    <h4 class="teal-text text-darken-2" style="font-weight: 600;">Catálogo de Muebles</h4>
+    <p class="grey-text text-darken-1">Encuentra los muebles ideales para darle vida y elegancia a cada espacio de tu hogar</p>
+  </div>
+
+  <div class="row">
+    <!-- Generar tarjetas responsivas de Materialize CSS mediante *ngFor -->
+    <div class="col s12 m6 l3" *ngFor="let producto of productos" style="margin-bottom: 25px;">
+      <div class="card hoverable" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+        
+        <div class="card-image">
+          <!-- Mostrar imágenes con [src] -->
+          <img [src]="producto.imagen" [alt]="producto.nombre" style="height: 180px; object-fit: cover;">
+          
+          <!-- Mostrar la etiqueta NUEVO mediante *ngIf -->
+          <span *ngIf="producto.nuevo" class="new badge green darken-1" data-badge-caption="NUEVO"></span>
+        </div>
+
+        <div class="card-content" style="flex-grow: 1;">
+          <span class="chip teal lighten-5 teal-text text-darken-3" style="height: 22px; line-height: 22px; font-size: 0.75rem; margin-bottom: 8px;">
+            {{ producto.categoria }}
+          </span>
+
+          <!-- Nombres con titlecase -->
+          <h6 style="font-weight: bold; margin: 5px 0 10px 0; min-height: 40px;">
+            {{ producto.nombre | titlecase }}
+          </h6>
+
+          <p class="grey-text text-darken-1" style="font-size: 0.85rem; min-height: 48px;">
+            {{ producto.descripcion }}
+          </p>
+
+          <!-- Precios con currency -->
+          <h5 class="teal-text text-darken-3" style="font-weight: bold; margin-top: 15px;">
+            {{ producto.precio | currency:'USD':'symbol':'1.2-2' }}
+          </h5>
+
+          <!-- Mostrar el estado Agotado cuando corresponda mediante *ngIf -->
+          <div style="margin-top: 10px;">
+            <span *ngIf="!producto.disponible" class="red-text text-darken-2" style="font-weight: 600; font-size: 0.9rem;">
+              <i class="fa-solid fa-circle-xmark left"></i>Agotado
+            </span>
+            <span *ngIf="producto.disponible" class="green-text text-darken-2" style="font-weight: 600; font-size: 0.9rem;">
+              <i class="fa-solid fa-circle-check left"></i>Disponible
+            </span>
+          </div>
+        </div>
+
+        <div class="card-action">
+          <!-- Deshabilitar el botón de compra mediante [disabled] para productos no disponibles -->
+          <button
+            class="btn waves-effect waves-light teal darken-2"
+            style="width: 100%;"
+            [disabled]="!producto.disponible"
+            (click)="comprar(producto)">
+            <i class="fa-solid fa-cart-shopping left"></i>
+            {{ producto.disponible ? 'Comprar' : 'No disponible' }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

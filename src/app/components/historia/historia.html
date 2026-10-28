@@ -1,0 +1,36 @@
+<section id="historia" class="container" style="padding: 40px 0;">
+  <div class="center-align" style="margin-bottom: 30px;">
+    <h4 class="teal-text text-darken-2" style="font-weight: 600;">Nuestra Historia</h4>
+    <p class="grey-text text-darken-1">Conoce los acontecimientos más importantes que han marcado nuestro crecimiento</p>
+  </div>
+
+  <div class="row">
+    <!-- Mostrar los acontecimientos dinámicamente mediante *ngFor -->
+    <div class="col s12 m6 l3" *ngFor="let item of acontecimientos">
+      <div class="card hoverable" [class.teal]="item.anio === anioMasReciente" [class.lighten-5]="item.anio === anioMasReciente" style="height: 100%;">
+        <div class="card-content">
+          <span class="card-title teal-text text-darken-3" style="font-weight: bold;">
+            <i class="fa-solid fa-calendar-days left"></i>{{ item.anio }}
+          </span>
+
+          <!-- Aplicar titlecase en título -->
+          <h6 style="font-weight: 600; min-height: 40px;">
+            {{ item.titulo | titlecase }}
+          </h6>
+
+          <!-- Aplicar lowercase en la descripción -->
+          <p class="grey-text text-darken-2" style="font-size: 0.9rem; margin-top: 10px;">
+            {{ item.descripcion | lowercase }}
+          </p>
+
+          <!-- Usar *ngIf para destacar el acontecimiento más reciente -->
+          <div *ngIf="item.anio === anioMasReciente" style="margin-top: 15px;">
+            <span class="chip teal white-text" style="font-size: 0.75rem; font-weight: bold;">
+              <i class="fa-solid fa-star left"></i>¡Más Reciente!
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

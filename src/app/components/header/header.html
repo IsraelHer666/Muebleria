@@ -1,0 +1,17 @@
+<section id="inicio">
+  <div class="slider">
+    <ul class="slides">
+      <li *ngFor="let slide of slides">
+        <img [src]="slide.imagen" [alt]="slide.titulo">
+        <div class="caption center-align">
+          <h3 class="white-text" style="font-weight: 700; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">
+            {{ slide.titulo | uppercase }}
+          </h3>
+          <h5 class="light grey-text text-lighten-4" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">
+            {{ slide.descripcion }}
+          </h5>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
